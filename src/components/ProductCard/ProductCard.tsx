@@ -30,274 +30,90 @@ function ProductCard({
     return (
         <Card
             variant="elevated"
-            className="
-                product-card
-                min-h-120!
-                overflow-hidden!
-                rounded-sm!
-                p-0!
-                transition-all!
-                duration-200!
-                hover:border-border!
-                hover:shadow-[0_6px_18px_rgba(24,24,24,0.09)]!
-                max-md:min-h-127.5!
-                max-[30rem]:min-h-125!
-            "
+            className="flex flex-col min-h-120 p-0! overflow-hidden! bg-white border border-[#eef0f2] rounded-0.5! shadow-[0_4px_6px_-1px_#0000001a] transition-all duration-200 ease hover:border-[#d1d5db] hover:shadow-[0_6px_18px_rgba(24,24,24,0.09)] max-[768px]:min-h-127.5 max-[480px]:min-h-125"
         >
-            {/* Product Image */}
-            <div
-                className="
-                    relative
-                    flex
-                    h-55
-                    w-full
-                    shrink-0
-                    items-center
-                    justify-center
-                    bg-white
-                    p-5
-                    max-md:h-52.5
-                    max-[30rem]:h-57.5
-                "
-            >
+            <div className="relative w-full h-55 p-5 flex items-center justify-center bg-white max-[768px]:h-52.5 max-[480px]:h-57.5">
                 <img
                     src={imageUrl}
                     alt={name}
-                    className="
-                        block
-                        h-full
-                        w-full
-                        object-contain
-                        object-center
-                        transition-transform
-                        duration-300
-                        hover:scale-105
-                    "
+                    className="block w-full h-full object-contain object-center transition-transform duration-250 ease"
                 />
 
                 {discountedPrice && (
-                    <span
-                        className="
-                            absolute
-                            left-3
-                            top-3
-                            rounded-sm
-                            bg-orange
-                            px-2
-                            py-1.25
-                            font-[Consolas]
-                            text-[0.625rem]
-                            font-bold
-                            leading-none
-                            tracking-[0.03125rem]
-                            text-white
-                        "
-                    >
+                    <span className="absolute top-3 left-3 py-1.25 px-2 font-[Consolas,sans-serif] text-[10px] font-bold leading-none tracking-[0.5px] rounded-0.5 bg-orange text-white">
                         SALE
                     </span>
                 )}
 
                 {isNew && (
-                    <span
-                        className="
-                            absolute
-                            right-3
-                            top-3
-                            rounded-sm
-                            bg-charcoal
-                            px-2
-                            py-1.25
-                            font-[Consolas]
-                            text-[0.625rem]
-                            font-bold
-                            leading-none
-                            tracking-[0.03125rem]
-                            text-white
-                        "
-                    >
+                    <span className="absolute top-3 right-3 py-1.25 px-2 font-[Consolas,sans-serif] text-[10px] font-bold leading-none tracking-[0.5px] rounded-0.5 bg-[#252525] text-white">
                         NEW
                     </span>
                 )}
             </div>
 
-            {/* Product Content */}
-            <div
-                className="
-                    flex
-                    flex-1
-                    flex-col
-                    items-center
-                    px-5
-                    pb-5.5
-                    pt-4.5
-                    text-center
-                "
-            >
-                {/* Product Name */}
+            <div className="flex-1 pt-4.5 px-5 pb-5.5 flex flex-col items-center text-center">
                 <div className="w-full">
-                    <h2
-                        className="
-                            mb-1.75
-                            w-full
-                            overflow-hidden
-                            font-['Industry_Test']
-                            text-base
-                            font-bold
-                            uppercase
-                            leading-[1.35]
-                            tracking-[0.025rem]
-                            text-orange
-                        "
-                    >
+                    <h2 className="w-full m-0 mb-1.75 text-orange font-['Industry_Test',sans-serif] text-[16px] font-bold leading-[1.35] tracking-[0.4px] uppercase line-clamp-2 overflow-hidden max-[480px]:text-[16px]">
                         {name}
                     </h2>
                 </div>
 
-                {/* Product Details */}
-                <div className="mt-auto flex w-full flex-col items-center">
-                    {/* Category */}
-                    <span
-                        className="
-                            mb-3.25
-                            block
-                            font-[Arial]
-                            text-[0.6875rem]
-                            font-semibold
-                            uppercase
-                            leading-[1.3]
-                            tracking-[0.0375rem]
-                            text-muted
-                        "
-                    >
+                <div className="w-full mt-auto flex flex-col items-center">
+                    <span className="block mb-3.25 text-[#666666] font-[Arial,sans-serif] text-[11px] font-semibold leading-[1.3] tracking-[0.6px] uppercase">
                         {category}
                     </span>
 
-                    {/* Rating */}
-                    <div
-                        className="
-                            mb-3.75
-                            flex
-                            items-center
-                            justify-center
-                            gap-1.5
-                        "
-                    >
-                        <span
-                            className="
-                                font-[Arial]
-                                text-lg
-                                font-bold
-                                leading-none
-                                tracking-[-0.125rem]
-                                text-orange
-                            "
-                        >
+                    <div className="flex items-center justify-center gap-1.5 mb-3.75">
+                        <span className="text-orange text-[18px] font-bold leading-none tracking-[-2px]">
                             {"★".repeat(fullStars)}
 
-                            <span className="text-border">
+                            <span className="text-[#e5e7eb]">
                                 {"★".repeat(emptyStars)}
                             </span>
                         </span>
 
-                        <span
-                            className="
-                                ml-0.5
-                                font-[Arial]
-                                text-[0.6875rem]
-                                font-medium
-                                leading-none
-                                text-muted
-                            "
-                        >
+                        <span className="ml-0.5 text-muted font-[Arial,sans-serif] text-[11px] font-medium leading-none">
                             {rating.toFixed(1)} (1)
                         </span>
                     </div>
 
-                    {/* Unit Price */}
-                    <div
-                        className="
-                            mb-4
-                            flex
-                            items-baseline
-                            justify-center
-                            gap-1
-                            font-['Industry_Test']
-                            leading-[1.2]
-                        "
-                    >
+                    <div className="m-0 mb-4 flex items-baseline justify-center gap-1 font-['Industry_Test',Arial,sans-serif] leading-[1.2]">
                         {discountedPrice ? (
                             <>
-                                <span className="text-[1.0625rem] font-bold text-black">
-                                    ₹
-                                    {discountedPrice.toLocaleString("en-IN")}
+                                <span className="text-black text-[17px] font-bold leading-[1.2]">
+                                    ₹{discountedPrice.toLocaleString("en-IN")}
                                 </span>
 
-                                <span className="text-[0.8125rem] font-medium text-muted line-through">
+                                <span className="text-muted text-[13px] font-medium line-through leading-[1.2]">
                                     ₹{price.toLocaleString("en-IN")}
                                 </span>
 
-                                <span
-                                    className="
-                                        whitespace-nowrap
-                                        font-[Consolas]
-                                        text-[0.625rem]
-                                        font-semibold
-                                        text-muted
-                                    "
-                                >
+                                <span className="text-muted font-[Consolas,sans-serif] text-[10px] font-semibold whitespace-nowrap leading-[1.2]">
                                     ({discountPercentage}% off)
                                 </span>
                             </>
                         ) : (
-                            <span className="text-[1.0625rem] font-bold text-black">
+                            <span className="text-black text-[17px] font-bold leading-[1.2]">
                                 ₹{price.toLocaleString("en-IN")}
                             </span>
                         )}
                     </div>
 
-                    {/* Quantity */}
                     <QuantitySelector
                         quantity={quantity}
                         onChange={setQuantity}
                         className="mb-2.5"
                     />
 
-                    {/* Total Price */}
-                    <p
-                        className="
-                            mb-4
-                            font-['Industry_Test']
-                            text-base
-                            font-bold
-                            leading-[1.2]
-                            text-black
-                        "
-                    >
+                    <p className="m-0 mb-4 text-black font-['Industry_Test',Consolas,sans-serif] text-[16px] font-bold leading-[1.2]">
                         Total: ₹{totalPrice.toLocaleString("en-IN")}
                     </p>
                 </div>
 
-                {/* Add To Cart */}
                 <Button
                     onClick={handleClick}
-                    className="
-                        mt-3!
-                        h-13!
-                        w-42!
-                        shrink-0!
-                        rounded-sm!
-                        px-4!
-                        py-3!
-                        font-['Industry_Test']!
-                        text-base!
-                        font-bold!
-                        leading-none!
-                        tracking-[0.03125rem]!
-                        uppercase!
-                        whitespace-nowrap!
-                        active:translate-y-px!
-                        max-[30rem]:w-45!
-                    "
+                    className="w-42! h-13! mt-3! py-3! px-4! rounded-0.5! font-['Industry_Test',sans-serif]! text-[16px]! font-bold! leading-none! tracking-[0.5px]! uppercase! whitespace-nowrap! shrink-0! hover:bg-[#cc4000]! active:translate-y-px! max-[480px]:w-45!"
                 >
                     ADD TO CART
                 </Button>
