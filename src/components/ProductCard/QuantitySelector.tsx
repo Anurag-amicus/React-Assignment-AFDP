@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import Button from "../Button/Button";
-import "./QuantitySelector.css";
 
 type QuantitySelectorProps = {
     quantity: number;
     onChange: (value: number) => void;
+    className?: string;
 };
 
-function QuantitySelector({ quantity, onChange }: QuantitySelectorProps) {
+function QuantitySelector({
+    quantity,
+    onChange,
+    className = "",
+}: QuantitySelectorProps) {
     const [inputValue, setInputValue] = useState(String(quantity));
 
     useEffect(() => {
@@ -18,13 +22,11 @@ function QuantitySelector({ quantity, onChange }: QuantitySelectorProps) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
 
-        // Allow the input to be temporarily empty.
         if (value === "") {
             setInputValue("");
             return;
         }
 
-        // Allow only whole numbers.
         if (!/^\d+$/.test(value)) {
             return;
         }
@@ -54,10 +56,12 @@ function QuantitySelector({ quantity, onChange }: QuantitySelectorProps) {
     };
 
     return (
-        <div className="quantity-selector">
+        <div
+            className={`flex h-8 w-fit items-center overflow-hidden rounded-full border border-border bg-white ${className}`}
+        >
             <Button
                 variant="generic"
-                className="quantity-button quantity-decrease"
+                className="m-0! h-8! w-8! min-w-8! rounded-l-full! rounded-r-none! p-0! font-[Consolas]! text-xl! font-bold! leading-none! text-black! hover:bg-orange! hover:text-white! disabled:cursor-not-allowed! disabled:opacity-40!"
                 onClick={handleDecrease}
                 disabled={quantity === 1}
             >
@@ -65,7 +69,7 @@ function QuantitySelector({ quantity, onChange }: QuantitySelectorProps) {
             </Button>
 
             <input
-                className="quantity-input"
+                className="h-7.5 w-13 border-0 border-l border-r border-border bg-white p-0 text-center font-[Consolas] text-base font-bold leading-none text-black outline-none focus:bg-[#fafafa]"
                 type="text"
                 inputMode="numeric"
                 value={inputValue}
@@ -76,7 +80,7 @@ function QuantitySelector({ quantity, onChange }: QuantitySelectorProps) {
 
             <Button
                 variant="generic"
-                className="quantity-button quantity-increase"
+                className="m-0! h-8! w-8! min-w-8! rounded-l-none! rounded-r-full! p-0! font-[Consolas]! text-xl! font-bold! leading-none! text-black! hover:bg-orange! hover:text-white!"
                 onClick={handleIncrease}
             >
                 +
