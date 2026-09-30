@@ -9,6 +9,8 @@ import type { SortOption, SortDirection } from "../../types/filterproptypes";
 import { type Product } from "../../types/product";
 import { ApiService } from "../../services/apiService";
 import { transformProducts } from "../../utils/dataTransformation";
+import Pagination from "../../components/Pagination/Pagination";
+import Footer from "../../components/Footer/Footer";
 
 const categories = [
     "beauty",
@@ -277,6 +279,8 @@ function ProductListingPage() {
                     </section>
                 </div>
             </main>
+            <Pagination />
+            <Footer />
         </div>
     );
 }

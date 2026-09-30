@@ -1,4 +1,4 @@
-# AmiCart — React + Vite + TypeScript
+# React + Vite + TypeScript
 
 A simple e-commerce product application built with **React, TypeScript, and Vite**. The project was developed progressively through six assignments covering React fundamentals, reusable components, state management, controlled inputs, filtering, responsive layouts, and a static e-commerce home page.
 
@@ -236,3 +236,84 @@ Implemented a complete checkout shipping form with **two different form-handling
 * Added configurable form IDs so the Place Order button submits the correct checkout form.
 * Shared the same `CheckoutPage.css` styling between both implementations.
 * Added reusable form validation and API service functionality rather than duplicating logic.
+
+## Update of Assignment 10 — Tailwind CSS Product Listing Styling
+
+Applied professional styling to the existing product listing using **Tailwind CSS** while preserving the existing React, TypeScript, API, filtering, sorting, and component behavior.
+
+### Tailwind CSS Setup
+
+* Installed **Tailwind CSS** with the Vite integration.
+* Configured Tailwind using `@tailwindcss/vite` in `vite.config.ts`.
+* Added Tailwind CSS to the global stylesheet using `@import "tailwindcss";`.
+* Added reusable Tailwind theme colors mapped to the existing CSS variables:
+  * `black`
+  * `charcoal`
+  * `orange`
+  * `orange-dark`
+  * `border`
+  * `muted`
+  * `white`
+
+### Reusable Component Styling
+
+Converted the following reusable components to Tailwind CSS:
+
+* **Card**
+  * Preserved `elevated`, `bordered`, and `flat` variants.
+  * Converted layout, spacing, borders, shadows, and typography to Tailwind utilities.
+
+* **Button**
+  * Preserved existing button variants.
+  * Added Tailwind-based colors, borders, hover states, transitions, and disabled states.
+  * Continued supporting custom `className` styling.
+
+* **QuantitySelector**
+  * Converted the quantity selector layout and controls to Tailwind.
+  * Preserved minimum quantity validation and controlled input behavior.
+  * Added Tailwind hover and disabled states.
+  * Added support for a parent-provided `className`.
+
+* **ProductCard**
+  * Converted product card styling from CSS to Tailwind.
+  * Styled the product image container and responsive image sizing.
+  * Added image hover scale effect.
+  * Added card hover border and shadow transitions.
+  * Styled SALE and NEW badges.
+  * Styled category, rating, pricing, discount, quantity, total price, and Add to Cart sections.
+  * Preserved responsive card sizing for smaller screen widths.
+  * Reused the existing `Card`, `Button`, and `QuantitySelector` components.
+
+### Product Listing Page
+
+Started converting `ProductListingPage` from CSS to Tailwind CSS.
+
+* Converted the main page wrapper and listing container.
+* Converted the listing heading and Product Listing title.
+* Converted the Refresh button styling.
+* Converted the overall listing layout containing the filter sidebar and product section.
+* Began replacing the existing `.product-grid` styling with responsive Tailwind grid utilities.
+* Product grid target:
+  * 1 column on mobile
+  * 2 columns on tablet
+  * 4 columns on desktop
+
+### Styling Conventions
+
+* Reused existing theme variables instead of duplicating theme colors where possible.
+* Used Tailwind spacing utilities instead of arbitrary pixel values when the spacing scale can represent the value.
+* Preserved exact custom values where Tailwind's standard utilities cannot represent the original design accurately.
+* Used Tailwind important modifiers with `!` at the end of utilities where component styles need to be overridden.
+* Preserved the existing orange and dark gray visual theme.
+
+### Remaining Assignment 10 Work
+
+* Complete the responsive Product Listing page conversion to Tailwind.
+* Convert and style the filter sidebar, including sticky positioning and responsive mobile behavior.
+* Style category checkboxes and sorting radio controls.
+* Style the search bar with its search icon and orange focus ring.
+* Add and style pagination with an orange active page.
+* Add and refine hover and focus transitions for interactive elements.
+* Verify responsive behavior across mobile, tablet, and desktop layouts.
+* Verify accessible color contrast.
+* Remove obsolete page/component CSS files once their styling has been fully migrated to Tailwind.
