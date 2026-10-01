@@ -26,18 +26,18 @@ export async function apiRequest<T>(
         };
 
     } catch (error) {
-    if (error instanceof DOMException && error.name === "AbortError") {
+        if (error instanceof DOMException && error.name === "AbortError") {
+            return {
+                success: false,
+                error: "Request was cancelled.",
+            };
+        }
+
         return {
             success: false,
-            error: "Request was cancelled.",
+            error: error instanceof Error
+                ? error.message
+                : "Network request failed.",
         };
     }
-
-    return {
-        success: false,
-        error: error instanceof Error
-            ? error.message
-            : "Network request failed.",
-    };
-}
 }

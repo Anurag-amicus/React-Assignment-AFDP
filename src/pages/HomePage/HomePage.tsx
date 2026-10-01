@@ -1,5 +1,3 @@
-import './HomePage.css';
-
 import CtaGrid from '../../components/CtaGrid/CtaGrid';
 import Header from '../../components/Header/Header';
 import Hero from '../../components/Hero/Hero';
@@ -9,11 +7,11 @@ import Footer from '../../components/Footer/Footer';
 
 function HomePage() {
     return (
-        <div className="home-page">
+        <div className="w-full min-h-screen bg-white">
 
             <Header />
 
-            <main>
+            <main className="w-full">
 
                 <Hero />
 
@@ -31,4 +29,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default HomePage;

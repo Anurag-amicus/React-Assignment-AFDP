@@ -18,8 +18,6 @@ import { type Product } from "../../types/product";
 import { ApiService } from "../../services/apiService";
 import { transformProducts } from "../../utils/dataTransformation";
 
-import "./FeaturedCarousel.css";
-
 const apiService = new ApiService();
 
 function FeaturedCarousel() {
@@ -39,7 +37,7 @@ function FeaturedCarousel() {
             return;
         }
 
-        if (!result.success) {
+        if (result.success === false) {
             setError(result.error);
             setLoading(false);
             return;
@@ -70,20 +68,20 @@ function FeaturedCarousel() {
     }, []);
 
     return (
-        <section className="featured-section">
-            <div className="featured-container">
-                <h2 className="section-heading">
+        <section className="w-full bg-white px-6 pt-7.5 pb-2.5 max-[768px]:pt-11.25 max-[768px]:px-4.5 max-[768px]:pb-15">
+            <div className="mx-auto w-full max-w-287.5">
+                <h2 className="m-0 mb-7.5 text-black font-['Industry_Test',sans-serif] text-[32px] font-extrabold leading-[1.1] tracking-[0.3px] text-center max-[768px]:text-[28px] max-[768px]:mb-6 max-[480px]:text-[24px]">
                     Featured Products
                 </h2>
 
-                <div className="featured-carousel">
+                <div className="relative w-full [&_.swiper]:w-full [&_.swiper-slide]:h-auto! [&_.swiper-slide]:flex [&_.swiper-slide>*]:w-full!">
                     <Arrow
                         direction="left"
-                        className="featured-arrow featured-arrow-prev"
+                        className="featured-arrow-prev absolute top-1/2 -mt-6.25 w-12! h-12! -left-8.5 max-[768px]:w-6! max-[768px]:h-6! max-[768px]:left-0.5"
                         ariaLabel="Previous products"
                     />
 
-                    <div className="featured-carousel-viewport">
+                    <div className="w-full overflow-hidden">
                         {loading && (
                             <Swiper
                                 slidesPerView={4}
@@ -116,11 +114,11 @@ function FeaturedCarousel() {
                         )}
 
                         {!loading && error && (
-                            <div className="featured-error">
+                            <div className="min-h-121 flex flex-col items-center justify-center gap-4.5 border border-border text-muted font-['Consolas',sans-serif] text-base text-center [&>p]:m-0">
                                 <p>{error}</p>
 
                                 <Button
-                                    className="featured-retry-button"
+                                    className="w-30! h-10.5! px-4! py-2.5! rounded-xs! font-['Industry_Test',sans-serif]! text-[14px]! font-bold! leading-none! tracking-[0.4px]! uppercase!"
                                     onClick={handleRetry}
                                 >
                                     Retry
@@ -140,6 +138,7 @@ function FeaturedCarousel() {
                                     nextEl: ".featured-arrow-next",
                                 }}
                                 pagination={{
+                                    el: ".featured-pagination",
                                     clickable: true,
                                 }}
                                 breakpoints={{
@@ -172,10 +171,13 @@ function FeaturedCarousel() {
 
                     <Arrow
                         direction="right"
-                        className="featured-arrow featured-arrow-next"
+                        className="featured-arrow-next absolute top-1/2 -mt-6.25 w-12! h-12! -right-8.5 max-[768px]:w-6! max-[768px]:h-6! max-[768px]:right-0.5"
                         ariaLabel="Next products"
                     />
                 </div>
+
+                {/* Pagination dots container rendered below the carousel */}
+                <div className="featured-pagination static! flex! justify-center! items-center! mt-6 min-h-3 [&_.swiper-pagination-bullet]:w-3! [&_.swiper-pagination-bullet]:h-3! [&_.swiper-pagination-bullet]:mx-1! [&_.swiper-pagination-bullet]:bg-[#535252]! [&_.swiper-pagination-bullet]:opacity-100! [&_.swiper-pagination-bullet]:rounded-full! [&_.swiper-pagination-bullet]:cursor-pointer! [&_.swiper-pagination-bullet-active]:bg-orange!" />
             </div>
         </section>
     );
