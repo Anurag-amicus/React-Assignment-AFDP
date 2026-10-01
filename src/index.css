@@ -18,6 +18,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Industry Test Medium";
+    src: url("./assets/fonts/IndustryTest-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --black: #111111;
     --charcoal: #2c2e35;

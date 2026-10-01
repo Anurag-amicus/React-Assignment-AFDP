@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import Button from "../../components/Button/Button";
@@ -23,16 +24,24 @@ const categories = [
 const apiService = new ApiService();
 
 function ProductListingPage() {
+    const [searchParams] = useSearchParams();
+    const queryParam = searchParams.get("search") || "";
+    const categoryParam = searchParams.get("category");
+
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(
+        categoryParam ? [categoryParam] : []
+    );
     const [selectedSort, setSelectedSort] = useState<SortOption | null>(null);
     const [sortDirection, setSortDirection] = useState<SortDirection>(null);
 
-    const [searchInput, setSearchInput] = useState<string>("");
-    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [searchInput, setSearchInput] = useState<string>(queryParam);
+    const [searchTerm, setSearchTerm] = useState<string>(
+        queryParam.trim().toLowerCase()
+    );
 
     const [filtersOpen, setFiltersOpen] = useState<boolean>(false);
 
@@ -56,7 +65,7 @@ function ProductListingPage() {
             return;
         }
 
-        if (!result.success) {
+        if (result.success === false) {
             setError(result.error);
             setLoading(false);
             return;
@@ -80,6 +89,19 @@ function ProductListingPage() {
             controller.abort();
         };
     }, []);
+
+    useEffect(() => {
+        const query = searchParams.get("search");
+        if (query !== null && query !== searchInput) {
+            setSearchInput(query);
+            setSearchTerm(query.trim().toLowerCase());
+        }
+
+        const category = searchParams.get("category");
+        if (category !== null && !selectedCategories.includes(category)) {
+            setSelectedCategories(category ? [category] : []);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -126,10 +148,10 @@ function ProductListingPage() {
         selectedSort === "name"
             ? "Name"
             : selectedSort === "price"
-              ? "Price"
-              : selectedSort === "rating"
-                ? "Ratings"
-                : null;
+                ? "Price"
+                : selectedSort === "rating"
+                    ? "Ratings"
+                    : null;
 
     const directionLabel =
         sortDirection === "asc"
@@ -137,10 +159,10 @@ function ProductListingPage() {
                 ? "A → Z"
                 : "Low to High"
             : sortDirection === "desc"
-              ? selectedSort === "name"
-                  ? "Z → A"
-                  : "High to Low"
-              : null;
+                ? selectedSort === "name"
+                    ? "Z → A"
+                    : "High to Low"
+                : null;
 
     return (
         <div className="w-full min-h-screen bg-white">
@@ -164,11 +186,10 @@ function ProductListingPage() {
                     <aside className="w-full mt-9 p-3 border border-border bg-white sticky top-4 self-start max-[800px]:static max-[800px]:mt-0 max-[800px]:p-0">
                         <button
                             type="button"
-                            className={`w-full m-0 p-0 pb-1.75 flex items-center justify-between border-t-0 border-x-0 border-b-2 border-orange bg-transparent text-charcoal font-['Arial',sans-serif]! text-[15px]! font-bold! leading-tight text-left cursor-pointer outline-none select-none max-[800px]:min-h-11 max-[800px]:px-3 max-[800px]:py-0 max-[800px]:border-b-0 ${
-                                filtersOpen
-                                    ? "max-[800px]:border-b-2! max-[800px]:border-orange!"
-                                    : ""
-                            }`}
+                            className={`w-full m-0 p-0 pb-1.75 flex items-center justify-between border-t-0 border-x-0 border-b-2 border-orange bg-transparent text-charcoal font-['Arial',sans-serif]! text-[15px]! font-bold! leading-tight text-left cursor-pointer outline-none select-none max-[800px]:min-h-11 max-[800px]:px-3 max-[800px]:py-0 max-[800px]:border-b-0 ${filtersOpen
+                                ? "max-[800px]:border-b-2! max-[800px]:border-orange!"
+                                : ""
+                                }`}
                             onClick={() => setFiltersOpen((isOpen) => !isOpen)}
                             aria-expanded={filtersOpen}
                         >
@@ -180,11 +201,10 @@ function ProductListingPage() {
                         </button>
 
                         <div
-                            className={`block max-[800px]:px-3 max-[800px]:pb-3 max-[800px]:pt-0 ${
-                                filtersOpen
-                                    ? "max-[800px]:block!"
-                                    : "max-[800px]:hidden!"
-                            }`}
+                            className={`block max-[800px]:px-3 max-[800px]:pb-3 max-[800px]:pt-0 ${filtersOpen
+                                ? "max-[800px]:block!"
+                                : "max-[800px]:hidden!"
+                                }`}
                         >
                             <div className="pt-2.5">
                                 <h3 className="m-0 mb-2.5 text-charcoal font-[Arial,sans-serif] text-[13px] font-bold leading-normal">

@@ -306,3 +306,89 @@ Started converting `ProductListingPage` from CSS to Tailwind CSS.
 * Used Tailwind important modifiers with `!` at the end of utilities where component styles need to be overridden.
 * Preserved the existing orange and dark gray visual theme.
 
+## Update of Assignment 11 — E-Commerce Home & Product Listing Pages
+
+Started building the complete **Home Page and Product Listing Page** using **React, TypeScript, and Tailwind CSS**, based on the provided mockups and the concepts covered during Week 1–2.
+
+### Home Page Styling
+
+Implemented the Home Page UI and responsive styling using Tailwind CSS.
+
+* Styled the Home Page layout according to the provided mockup.
+* Converted the existing Home Page sections to Tailwind-based styling.
+* Styled the header, hero section, CTA cards, featured products section, category section, and footer.
+* Reused existing components such as:
+  * `Header`
+  * `Hero`
+  * `CtaGrid`
+  * `CtaCard`
+  * `FeaturedCarousel`
+  * `CategoryGrid`
+  * `Footer`
+  * `ProductCard`
+* Added responsive layouts for:
+  * Mobile
+  * Tablet
+  * Desktop
+* Preserved the existing orange and dark gray visual theme.
+* Added hover and transition states to interactive UI elements.
+
+### Product Listing Page Styling
+
+Implemented the Product Listing Page UI using Tailwind CSS.
+
+* Converted the main Product Listing page layout to Tailwind CSS.
+* Styled the Product Listing heading and Refresh button.
+* Created a responsive product grid using Tailwind:
+  * 1 column on mobile
+  * 2 columns on tablet
+  * 4 columns on desktop
+* Styled the product listing layout with:
+  * Filter sidebar
+  * Product section
+  * Product information area
+  * Product grid
+* Reused the existing `ProductCard`, `CategoryFilter`, `SortFilter`, and `Button` components.
+* Added responsive behavior for the product listing layout.
+* Added hover and transition styling to product cards and interactive elements.
+* Preserved existing loading, error, and empty-state UI structures.
+
+### Tailwind CSS
+
+* Continued using **Tailwind CSS** for the assignment styling.
+* Reused the existing Tailwind theme colors:
+  * `black`
+  * `charcoal`
+  * `orange`
+  * `orange-dark`
+  * `border`
+  * `muted`
+  * `white`
+* Used Tailwind spacing utilities wherever possible instead of arbitrary pixel values.
+* Used Tailwind responsive utilities for mobile, tablet, and desktop layouts.
+* Used Tailwind transitions and hover utilities for interactive elements.
+* Preserved reusable component-based styling and existing React functionality.
+
+### Current Assignment 11 Status
+
+The current implementation covers the **UI and styling portion** of the assignment.
+
+The following functionality is **not yet integrated**:
+
+* API integration with the provided training e-commerce API.
+* Dynamic product and category data.
+* Home Page featured product API integration.
+* Category navigation from Home Page to Product Listing.
+* Hero search navigation to Product Listing.
+* Product Listing filters for:
+  * Category
+  * Price range
+  * Brand
+  * Rating
+* API-based Search + Filter + Sort integration.
+* Pagination.
+* Breadcrumb navigation.
+* Dynamic product count.
+* Passing search and category parameters from Home Page to Product Listing.
+
+These features will be implemented in the next stage of Assignment 11.

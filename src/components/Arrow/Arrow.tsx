@@ -1,5 +1,3 @@
-import "./Arrow.css";
-
 type ArrowProps = {
     direction: "left" | "right";
     className?: string;
@@ -14,13 +12,14 @@ function Arrow({
     return (
         <button
             type="button"
-            className={`arrow arrow-${direction} ${className}`}
+            className={`flex w-7 h-7 p-0 items-center justify-center bg-transparent border-0 text-orange cursor-pointer z-20 ${direction === "left" ? "rotate-180" : ""} ${className}`}
             aria-label={ariaLabel}
         >
             <svg
                 aria-hidden="true"
                 focusable="false"
                 viewBox="0 0 320 512"
+                className="block w-4 h-6.5 fill-current"
             >
                 <path
                     fill="currentColor"
